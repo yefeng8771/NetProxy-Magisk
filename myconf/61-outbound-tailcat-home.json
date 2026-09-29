@@ -1,0 +1,29 @@
+{
+  "outbounds": [
+    {
+      "type": "tailcat",
+      "tag": "🏠 Tailcat 回家",
+      "private_key": "0C+iMYfhD**02TRBYXU=",
+      "server_public_key": "U+Xz**vW8E9HnU=",
+      "server_disco_key": "PkfkdM**I/Oi0=",
+      "pre_shared_key": "RiHgVg**QZD9KM=",
+      "derp_servers": [
+        {
+          "host": "derp.198707.xyz",
+          "ipv4": "104.194.69.191",
+          "derp_port": 443,
+          "stun_port": 3478,
+          "cert_name": "derp.198707.xyz"
+        },
+        {
+          "host": "derp.987891.xyz",
+          "ipv4": "94.159.106.184",
+          "derp_port": 443,
+          "stun_port": 3478,
+          "cert_name": "derp.987891.xyz"
+        }
+      ],
+      "domain_resolver": "🏠自建节点"
+    }
+  ]
+}

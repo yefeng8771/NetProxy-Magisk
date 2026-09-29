@@ -1,0 +1,158 @@
+{
+  "route": {
+    "rule_set": [
+      {
+        "tag": [
+          "Reject",
+          "AI",
+          "Telegram",
+          "Google",
+          "Proxy",
+          "AppleProxy",
+          "ChinaDomain",
+          "ChinaIP"
+        ],
+        "type": "remote",
+        "format": "binary",
+        "url": "https://cdn.jsdelivr.net/gh/Repcz/Tool@X/sing-box/Rules/{tag}.srs",
+        "http_client": "直连拉取",
+        "update_interval": "24h"
+      },
+      {
+        "tag": "🛰️MyDirectDomains",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://cdn.jsdelivr.net/gh/yefeng8771/sing-box-config-sync@main/custom/direct-domains.srs",
+        "http_client": "直连拉取",
+        "update_interval": "24h"
+      },
+      {
+        "tag": "🛰️MyProxyDomains",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://cdn.jsdelivr.net/gh/yefeng8771/sing-box-config-sync@main/custom/proxy-domains.srs",
+        "http_client": "直连拉取",
+        "update_interval": "24h"
+      },
+      {
+        "tag": "🔧国内解析",
+        "type": "local",
+        "format": "source",
+        "path": "/data/adb/sing-box/rules/cn-resolve.json"
+      }
+    ],
+    "rules": [
+      {
+        "action": "sniff"
+      },
+      {
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          {
+            "port": 53
+          },
+          {
+            "protocol": "dns"
+          }
+        ],
+        "action": "hijack-dns"
+      },
+      {
+        "ip_cidr": [
+          "172.16.3.0/24"
+        ],
+        "action": "route",
+        "outbound": "🏠回家"
+      },
+      {
+        "port": [
+          3478,
+          19302
+        ],
+        "action": "route",
+        "outbound": "🎯全球直连"
+      },
+      {
+        "protocol": "stun",
+        "action": "route",
+        "outbound": "🎯全球直连"
+      },
+      {
+        "protocol": "bittorrent",
+        "action": "route",
+        "outbound": "🎯全球直连"
+      },
+      {
+        "rule_set": [
+          "🛰️MyDirectDomains"
+        ],
+        "action": "route",
+        "outbound": "🎯全球直连"
+      },
+      {
+        "rule_set": [
+          "🛰️MyProxyDomains"
+        ],
+        "action": "route",
+        "outbound": "🐟漏网之鱼"
+      },
+      {
+        "rule_set": [
+          "AI"
+        ],
+        "action": "route",
+        "outbound": "🤖AI服务"
+      },
+      {
+        "rule_set": [
+          "Telegram"
+        ],
+        "action": "route",
+        "outbound": "📱电报消息"
+      },
+      {
+        "rule_set": [
+          "Google"
+        ],
+        "action": "route",
+        "outbound": "🔍谷歌服务"
+      },
+      {
+        "rule_set": [
+          "AppleProxy"
+        ],
+        "action": "route",
+        "outbound": "🍎苹果服务"
+      },
+      {
+        "rule_set": [
+          "ChinaDomain"
+        ],
+        "action": "route",
+        "outbound": "🎯全球直连"
+      },
+      {
+        "action": "resolve",
+        "match_only": true
+      },
+      {
+        "rule_set": [
+          "ChinaIP"
+        ],
+        "action": "route",
+        "outbound": "🎯全球直连"
+      },
+      {
+        "ip_is_private": true,
+        "action": "route",
+        "outbound": "🎯全球直连"
+      }
+    ],
+    "auto_detect_interface": true,
+    "default_http_client": "代理拉取",
+    "default_domain_resolver": "🇨🇳国内UDP",
+    "find_process": false,
+    "final": "🐟漏网之鱼"
+  }
+}

@@ -1,0 +1,177 @@
+{
+  "dns": {
+    "servers": [
+      {
+        "tag": "🏠自建节点",
+        "type": "hosts",
+        "predefined": {
+          "h2de.987891.xyz": [
+            "94.159.106.184"
+          ],
+          "derp.987891.xyz": [
+            "94.159.106.184"
+          ],
+          "derp.198707.xyz": [
+            "104.194.69.191"
+          ],
+          "bitder.yi.uy": [
+            "84.75.76.31"
+          ],
+          "usbwg.198707.xyz": [
+            "104.194.69.191"
+          ]
+        }
+      },
+      {
+        "tag": "🧩本地Hosts",
+        "type": "hosts",
+        "predefined": {
+          "dns.alidns.com": [
+            "223.5.5.5",
+            "223.6.6.6"
+          ],
+          "doh.pub": [
+            "1.12.12.21",
+            "120.53.53.53"
+          ],
+          "dns.google": [
+            "8.8.8.8",
+            "8.8.4.4"
+          ],
+          "cloudflare-dns.com": [
+            "104.16.248.249",
+            "104.16.249.249"
+          ],
+          "dashboard.proxyscrape.com": [
+            "104.18.13.254",
+            "104.18.18.252"
+          ],
+          "proxyscrape.com": [
+            "104.18.13.254",
+            "104.18.18.252"
+          ],
+          "www.proxyscrape.com": [
+            "104.18.13.254",
+            "104.18.18.252"
+          ],
+          "api.proxyscrape.com": [
+            "104.18.10.5"
+          ]
+        }
+      },
+      {
+        "tag": "🌐国外DoH",
+        "type": "https",
+        "server": "cloudflare-dns.com",
+        "detour": "🚀节点选择",
+        "domain_resolver": "🧩本地Hosts"
+      },
+      {
+        "tag": "🇨🇳国内DoH",
+        "type": "https",
+        "server": "dns.alidns.com",
+        "domain_resolver": "🧩本地Hosts"
+      },
+      {
+        "tag": "🇨🇳国内UDP",
+        "type": "udp",
+        "server": "223.5.5.5"
+      },
+      {
+        "tag": "🏠内网解析",
+        "type": "local",
+        "neighbor_domain": [
+          ".local",
+          ".lan"
+        ]
+      },
+      {
+        "type": "udp",
+        "tag": "dns-home",
+        "server": "172.16.3.1",
+        "server_port": 53,
+        "detour": "🏠 Tailcat 回家"
+      }
+    ],
+    "rules": [
+      {
+        "domain": [
+          "h2de.987891.xyz",
+          "derp.987891.xyz",
+          "derp.198707.xyz",
+          "bitder.yi.uy",
+          "usbwg.198707.xyz"
+        ],
+        "action": "route",
+        "server": "🏠自建节点"
+      },
+      {
+        "rule_set": [
+          "🔧国内解析"
+        ],
+        "server": "🇨🇳国内UDP"
+      },
+      {
+        "rule_set": [
+          "Reject"
+        ],
+        "action": "predefined"
+      },
+      {
+        "rule_set": [
+          "ChinaDomain"
+        ],
+        "action": "route",
+        "server": "🇨🇳国内UDP"
+      },
+      {
+        "query_type": "HTTPS",
+        "action": "reject"
+      },
+      {
+        "domain_suffix": [
+          "lancache.steamcontent.com",
+          "10099.com.cn",
+          "msftconnecttest.com",
+          "msftncsi.com",
+          "local"
+        ],
+        "server": "🏠内网解析"
+      },
+      {
+        "domain_suffix": [
+          "lan",
+          "home",
+          "internal",
+          "corp"
+        ],
+        "action": "route",
+        "server": "dns-home"
+      },
+      {
+        "domain_suffix": [
+          "proxyscrape.com"
+        ],
+        "server": "🧩本地Hosts"
+      },
+      {
+        "clash_mode": "Global",
+        "action": "route",
+        "server": "🌐国外DoH"
+      },
+      {
+        "clash_mode": "Direct",
+        "action": "route",
+        "server": "🏠内网解析"
+      },
+      {
+        "ip_version": 6,
+        "action": "reject"
+      }
+    ],
+    "strategy": "prefer_ipv4",
+    "optimistic": true,
+    "reverse_mapping": false,
+    "final": "🌐国外DoH"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "$schema": "https://sing-box.sagernet.org/schema.json",
+  "log": {
+    "disabled": false,
+    "level": "info",
+    "output": "/data/adb/sing-box/sing-box.log",
+    "timestamp": true
+  },
+  "experimental": {
+    "cache_file": {
+      "enabled": true,
+      "path": "/data/adb/sing-box/cache.db",
+      "store_fakeip": false
+    },
+    "observability": {
+      "enabled": true,
+      "recent_connections": 1000,
+      "recent_ttl": "30m",
+      "top_k_size": 100,
+      "expose_sensitive": false
+    }
+  },
+  "http_clients": [
+    {
+      "tag": "代理拉取",
+      "version": 2,
+      "detour": "🚀节点选择"
+    },
+    {
+      "tag": "直连拉取",
+      "version": 2
+    },
+    {
+      "tag": "hc-misub",
+      "domain_resolver": "🇨🇳国内UDP",
+      "headers": {
+        "User-Agent": [
+          "curl/8.7.1"
+        ]
+      }
+    }
+  ]
+}

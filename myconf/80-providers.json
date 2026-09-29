@@ -1,0 +1,34 @@
+{
+  "providers": [
+    {
+      "type": "remote",
+      "tag": "zj",
+      "url": "https://sub.yi.uy/NjVM8***b0d-52a4-4e70-a**b79?target=singbox",
+      "http_client": "hc-misub",
+      "update_interval": "1h",
+      "path": "/data/adb/sing-box/provider/zj.json",
+      "health_check": {
+        "enabled": false
+      },
+      "override_dialer": {
+        "domain_resolver": "🏠自建节点"
+      },
+      "include": "(手动节点 - |🇺🇸|🇩🇪|🇫🇷)"
+    },
+    {
+      "type": "remote",
+      "tag": "gy",
+      "url": "https://sub.yi.uy/NjVM8L**883b4-0917-4ead-af9e-23c57891bb94?target=singbox",
+      "http_client": "hc-misub",
+      "update_interval": "1h",
+      "path": "/data/adb/sing-box/provider/gy.json",
+      "health_check": {
+        "enabled": false
+      },
+      "override_dialer": {
+        "domain_resolver": "🇨🇳国内UDP"
+      },
+      "include": " - "
+    }
+  ]
+}

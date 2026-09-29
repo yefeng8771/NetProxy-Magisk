@@ -1,0 +1,107 @@
+{
+  "outbounds": [
+    {
+      "type": "direct",
+      "tag": "🎯全球直连"
+    },
+    {
+      "type": "selector",
+      "tag": "🏠自建",
+      "providers": [
+        "zj"
+      ],
+      "outbounds": [],
+      "interrupt_exist_connections": true
+    },
+    {
+      "type": "selector",
+      "tag": "🎁公益",
+      "providers": [
+        "gy"
+      ],
+      "interrupt_exist_connections": true,
+      "outbounds": []
+    },
+    {
+      "type": "selector",
+      "tag": "🚀节点选择",
+      "outbounds": [
+        "🏠自建",
+        "🎁公益",
+        "🎯全球直连"
+      ],
+      "default": "🏠自建",
+      "interrupt_exist_connections": true
+    },
+    {
+      "type": "selector",
+      "tag": "🤖AI服务",
+      "outbounds": [
+        "🏠自建",
+        "🎁公益",
+        "🚀节点选择",
+        "🎯全球直连"
+      ],
+      "default": "🚀节点选择",
+      "interrupt_exist_connections": true
+    },
+    {
+      "type": "selector",
+      "tag": "📱电报消息",
+      "outbounds": [
+        "🏠自建",
+        "🎁公益",
+        "🚀节点选择",
+        "🎯全球直连"
+      ],
+      "default": "🚀节点选择",
+      "interrupt_exist_connections": true
+    },
+    {
+      "type": "selector",
+      "tag": "🔍谷歌服务",
+      "outbounds": [
+        "🏠自建",
+        "🎁公益",
+        "🚀节点选择",
+        "🎯全球直连"
+      ],
+      "default": "🚀节点选择",
+      "interrupt_exist_connections": true
+    },
+    {
+      "type": "selector",
+      "tag": "🍎苹果服务",
+      "outbounds": [
+        "🎯全球直连",
+        "🚀节点选择",
+        "🏠自建",
+        "🎁公益"
+      ],
+      "default": "🎯全球直连",
+      "interrupt_exist_connections": true
+    },
+    {
+      "type": "selector",
+      "tag": "🐟漏网之鱼",
+      "outbounds": [
+        "🚀节点选择",
+        "🏠自建",
+        "🎁公益",
+        "🎯全球直连"
+      ],
+      "default": "🚀节点选择",
+      "interrupt_exist_connections": true
+    },
+    {
+      "type": "selector",
+      "tag": "🏠回家",
+      "outbounds": [
+        "🏠 Tailcat 回家",
+        "🎯全球直连"
+      ],
+      "default": "🏠 Tailcat 回家",
+      "interrupt_exist_connections": true
+    }
+  ]
+}

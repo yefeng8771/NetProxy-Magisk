@@ -1,0 +1,14 @@
+{
+  "services": [
+    {
+      "type": "api",
+      "tag": "🎛️控制面板",
+      "listen": "127.0.0.1",
+      "listen_port": 1235,
+      "dashboard": {
+        "enabled": true,
+        "path": "/data/adb/modules/netproxy/webroot/sing-box-dashboard"
+      }
+    }
+  ]
+}

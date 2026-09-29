@@ -1,0 +1,32 @@
+{
+  "inbounds": [
+    {
+      "type": "ebpf",
+      "tag": "🛡️主入口",
+      "network": [
+        "tcp",
+        "udp"
+      ],
+      "bypass_rule_set": [
+        "ChinaIP"
+      ],
+      "local": {
+        "enabled": true,
+        "data_plane": "cgroup",
+        "dns_mode": "hijack",
+        "ipv6": true,
+        "bypass_private_address": false
+      },
+      "shared": {
+        "enabled": true,
+        "data_plane": "packet_rewrite",
+        "dns_mode": "hijack",
+        "interface": [
+          "wlan2"
+        ],
+        "ipv6": true,
+        "bypass_private_address": false
+      }
+    }
+  ]
+}
