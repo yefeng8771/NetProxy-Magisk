@@ -22,7 +22,7 @@ concurrency:
 jobs:
   build:
     name: 构建文档
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
       - name: 拉取代码
@@ -60,7 +60,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: 部署到 GitHub Pages
         id: deployment

@@ -26,7 +26,7 @@ concurrency:
 jobs:
   changes:
     name: 判断受影响组件
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     permissions:
       contents: read
@@ -51,7 +51,7 @@ jobs:
     name: 验证并构建模块
     needs: changes
     if: needs.changes.outputs.module == 'true'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     outputs:
       version: ${{ steps.pack.outputs.version }}
@@ -84,7 +84,7 @@ jobs:
     name: 验证 Android 管理器
     needs: changes
     if: needs.changes.outputs.android == 'true'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
       - name: 拉取 Android 源码与构建配置
@@ -105,7 +105,7 @@ jobs:
     if: >-
       always() && !cancelled() && needs.module.result == 'success' &&
       (needs.android.result == 'success' || needs.android.result == 'skipped')
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     permissions:
       contents: write
@@ -196,7 +196,7 @@ jobs:
     name: 通知验证或发布失败
     needs: [changes, module, android, publish]
     if: always() && contains(needs.*.result, 'failure')
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
       - name: 失败通知

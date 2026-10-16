@@ -20,7 +20,7 @@ concurrency:
 jobs:
   update:
     name: 检查并更新资源、内核与依赖
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 60
     steps:
       - name: 拉取代码
